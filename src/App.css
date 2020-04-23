@@ -1,38 +1,78 @@
+html {
+  background-color: rgb(95, 167, 190);
+  height: 100%;
+}
+
 .App {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.monster-card {
+  margin: 0 auto;
+  padding: 20px;
+  border: 2px solid rgb(176, 176, 184);
+  width: 50%;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.elemental {
+  display: inline-flex;
+  flex-direction: row;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
 }
 
-.App-link {
-  color: #61dafb;
+h3 {
+  margin-top: 100px;
+  margin-bottom: 20px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.prev-arrow,
+.next-arrow {
+  height: 25px;
+}
+
+.elemental-img {
+  height: 100px;
+  margin: 20px;
+}
+
+.icon {
+  height: 25px;
+}
+
+#attack-counter,
+#defense-counter {
+  margin: 0 10px;
+  width: 10%;
+}
+
+.power-counter-row {
+  display: flex;
+  margin-top: 20px;
+  justify-content: center;
+}
+
+button {
+  padding: 5px 10px;
+  margin-top: 10px;
+}
+
+#createMonster {
+  margin: 0 auto;
+  padding: 20px 0;
+}
+
+li {
+  list-style-type: none;
+}
+
+#createMonster .power-counter {
+  display: flex;
+  width: 50%;
+  justify-content: space-evenly;
+  margin: auto;
+}
+
+#createMonster .monster-card {
+  display: flex;
 }
