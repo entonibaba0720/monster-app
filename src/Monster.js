@@ -7,7 +7,10 @@ class Monster extends Component {
   render() {
     return (
       <div className="monster-card">
-        <img src={this.props} id="elementalImg" alt="elementalimg"></img>
+        <img
+          src={this.props.elementalImg}
+          id="elementalImg"
+          alt="elementalimg"></img>
         <h4>{this.props.elementalName}</h4>
         <div className="power-counter">
           <img src={attack} alt="attack" className="icon"></img>
