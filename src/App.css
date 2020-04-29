@@ -66,6 +66,17 @@ li {
   list-style-type: none;
 }
 
+.created-monster-card {
+  margin: 0 auto;
+  padding: 20px;
+  border: 2px solid rgb(176, 176, 184);
+  width: 50%;
+}
+
+#createMonster h4 {
+  margin: 0 auto;
+}
+
 #createMonster .power-counter {
   display: flex;
   width: 50%;

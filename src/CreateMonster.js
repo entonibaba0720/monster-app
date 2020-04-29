@@ -9,6 +9,7 @@ class CreateMonster extends Component {
     this.state = {
       monsters: [],
       search: "",
+      isSearching: false,
     };
     this.create = this.create.bind(this);
     this.filter = this.filter.bind(this);
@@ -46,8 +47,9 @@ class CreateMonster extends Component {
     let filteredMonster = this.state.monsters.filter((monster) => {
       return monster.elementalName.indexOf(this.state.search) !== -1;
     });
-
-    const monsters = this.state.monsters.map((monster, monsterIndex) => {
+    const monstersToRender =
+      this.state.isSearching === true ? filteredMonster : this.state.monsters;
+    const monsters = monstersToRender.map((monster, monsterIndex) => {
       return (
         <Monster
           elementalName={monster.elementalName}
@@ -66,11 +68,7 @@ class CreateMonster extends Component {
       <div>
         <NewMonsterForm createMonster={this.create} />
         <Search filter={this.filter} />
-        {this.state.isSearching === true ? (
-          <ul>{filteredMonster}</ul>
-        ) : (
-          <ul>{monsters}</ul>
-        )}
+        <ul>{monsters}</ul>
       </div>
     );
   }

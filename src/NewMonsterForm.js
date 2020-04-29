@@ -56,19 +56,29 @@ class NewMonsterForm extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    this.setState((prev) => {
-      return {
-        monsterIndex: prev.monsterIndex + 1,
-      };
-    });
-    this.props.createMonster(this.state);
 
-    this.setState({
-      elementalName: "",
-      elementalImg: "",
-      attackCounter: "",
-      defenseCounter: "",
-    });
+    let elementalName = this.state.elementalName;
+    let attackCounter = this.state.attackCounter;
+    let defenseCounter = this.state.defenseCounter;
+
+    if ((!elementalName, !attackCounter, !defenseCounter)) {
+      alert("Fields are required!");
+    } else {
+      this.setState((prev) => {
+        return {
+          monsterIndex: prev.monsterIndex + 1,
+        };
+      });
+
+      this.props.createMonster(this.state);
+
+      this.setState({
+        elementalName: "",
+        elementalImg: "",
+        attackCounter: "",
+        defenseCounter: "",
+      });
+    }
   }
 
   render() {

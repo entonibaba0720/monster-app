@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import monsters from "./CreateMonster";
 
 class Search extends Component {
   constructor(props) {
@@ -25,7 +24,7 @@ class Search extends Component {
             type="text"
             className="input"
             placeholder="Search..."
-            value={this.state.search}
+            value={this.props.search}
             onChange={this.search}
           />
         </div>
