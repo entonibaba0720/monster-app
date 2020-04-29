@@ -76,3 +76,11 @@ li {
 #createMonster .monster-card {
   display: flex;
 }
+
+#elementalImg {
+  height: 100px;
+}
+
+.trash:hover {
+  cursor: pointer;
+}

@@ -1,16 +1,17 @@
 import React, { Component } from "react";
-
 import Monster from "./Monster";
 import NewMonsterForm from "./NewMonsterForm";
+import Search from "./Search";
 
 class CreateMonster extends Component {
   constructor(props) {
     super(props);
     this.state = {
       monsters: [],
+      search: "",
     };
-
     this.create = this.create.bind(this);
+    this.filter = this.filter.bind(this);
   }
 
   create(newMonster) {
@@ -18,22 +19,58 @@ class CreateMonster extends Component {
       monsters: [...this.state.monsters, newMonster],
     });
   }
+
+  delete(monsterIndex, event) {
+    const monsters = Object.assign([], this.state.monsters);
+    monsters.splice(monsterIndex, 1);
+    this.setState({
+      monsters: monsters,
+    });
+  }
+
+  filter(query) {
+    if (query) {
+      this.setState({
+        search: query,
+        isSearching: true,
+      });
+    } else {
+      this.setState({
+        search: query,
+        isSearching: false,
+      });
+    }
+  }
+
   render() {
-    const monsters = this.state.monsters.map((monster) => {
+    let filteredMonster = this.state.monsters.filter((monster) => {
+      return monster.elementalName.indexOf(this.state.filter) !== -1;
+    });
+
+    const monsters = this.state.monsters.map((monster, monsterIndex) => {
       return (
         <Monster
           elementalName={monster.elementalName}
-          elementalImg={monster.currentImg}
-          attackCounter={monster.attackCounter}
-          defenseCounter={monster.defenseCounter}
+          elementalImg={monster.elementalImg}
+          attackCounter={Number(monster.attackCounter)}
+          defenseCounter={Number(monster.defenseCounter)}
+          index={monster.index}
+          key={monster.monsterIndex}
+          monsterIndex={monster.monsterIndex}
+          delete={this.delete.bind(this, monsterIndex)}
         />
       );
     });
+
     return (
       <div>
-        <h1>Monster List</h1>
         <NewMonsterForm createMonster={this.create} />
-        <ul>{monsters}</ul>
+        <Search filter={this.filter} />
+        {this.state.isSearching === true ? (
+          <ul>{filteredMonster}</ul>
+        ) : (
+          <ul>{monsters}</ul>
+        )}
       </div>
     );
   }

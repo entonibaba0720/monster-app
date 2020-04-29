@@ -6,22 +6,20 @@ import earth from "./icons/earth.svg";
 import fire from "./icons/fire.svg";
 import water from "./icons/water.svg";
 
+const imgList = [air, earth, fire, water];
+
 class NewMonsterForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      monsters: [
-        {
-          elementalName: "",
-          elementalImg: "",
-          attackCounter: "",
-          defenseCounter: "",
-        },
-      ],
-
+      elementalName: "",
+      elementImg: "",
+      attackCounter: "",
+      defenseCounter: "",
       index: 0,
-      imgList: [air, earth, fire, water],
+      monsterIndex: 1,
     };
+
     this.onClickPrev = this.onClickPrev.bind(this);
     this.onClickNext = this.onClickNext.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -31,7 +29,7 @@ class NewMonsterForm extends Component {
   onClickPrev() {
     if (this.state.index - 1 === -1) {
       this.setState({
-        index: this.state.images.length - 1,
+        index: imgList.length - 1,
       });
     } else {
       this.setState({
@@ -41,7 +39,7 @@ class NewMonsterForm extends Component {
   }
 
   onClickNext() {
-    if (this.state.index + 1 === this.state.imgList.length) {
+    if (this.state.index + 1 === imgList.length) {
       this.setState({
         index: 0,
       });
@@ -58,16 +56,25 @@ class NewMonsterForm extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
+    this.setState((prev) => {
+      return {
+        monsterIndex: prev.monsterIndex + 1,
+      };
+    });
     this.props.createMonster(this.state);
 
     this.setState({
-      monsters: "",
+      elementalName: "",
+      elementalImg: "",
+      attackCounter: "",
+      defenseCounter: "",
     });
   }
 
   render() {
     return (
       <div>
+        <h4>Create Monster</h4>
         <div className="monster-card">
           <form onSubmit={this.handleSubmit} ref="form">
             <div className="elemental">
@@ -76,14 +83,14 @@ class NewMonsterForm extends Component {
                 alt="prev"
                 className="prev-arrow"
                 onClick={this.onClickPrev}></img>
+
               <img
-                id="elementalImg"
-                src={this.state.imgList[this.state.index]}
-                value={this.state.imgList[this.state.index]}
-                onChange={this.handleChange}
+                src={imgList[this.state.index]}
+                name={this.state.index}
+                index={this.state.index}
                 alt="Elemental"
                 className="elemental-img"
-                name="elementalImg"></img>
+                id="elementalImg"></img>
               <img
                 src="./images/icons/arrow-right.svg"
                 alt="next"
@@ -95,10 +102,9 @@ class NewMonsterForm extends Component {
               <label>
                 Name:
                 <input
-                  id="new-monster-name"
                   name="elementalName"
                   type="text"
-                  value={this.state.newMonstername}
+                  value={this.state.elementalName}
                   onChange={this.handleChange}
                   min="1"
                   max="250"></input>

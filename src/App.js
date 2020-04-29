@@ -8,7 +8,6 @@ function App() {
     <div className="App">
       <img src="/images/logo.svg" alt="monster-img"></img>
       <h1>Monsters</h1>
-
       <CreateMonster />
     </div>
   );
