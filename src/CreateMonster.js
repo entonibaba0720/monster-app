@@ -44,7 +44,7 @@ class CreateMonster extends Component {
 
   render() {
     let filteredMonster = this.state.monsters.filter((monster) => {
-      return monster.elementalName.indexOf(this.state.filter) !== -1;
+      return monster.elementalName.indexOf(this.state.search) !== -1;
     });
 
     const monsters = this.state.monsters.map((monster, monsterIndex) => {
