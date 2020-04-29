@@ -7,7 +7,6 @@ class Search extends Component {
     this.state = {
       search: "",
       isSearching: false,
-      monsters: monsters,
     };
 
     this.search = this.search.bind(this);
